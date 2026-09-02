@@ -1,8 +1,8 @@
-# 🔊 CNN 기반 환경 소리 분류 시스템
+# CNN 기반 환경 소리 분류 시스템
 
 CNN(Convolutional Neural Network)을 활용한 환경 소리 분류 프로젝트입니다. UrbanSound8K 데이터셋을 기반으로 도시 환경에서 발생하는 다양한 소리를 자동으로 분류합니다.
 
-## 📋 프로젝트 개요
+## 프로젝트 개요
 
 | 항목 | 내용 |
 |------|------|
@@ -11,7 +11,7 @@ CNN(Convolutional Neural Network)을 활용한 환경 소리 분류 프로젝트
 | 모델 | CNN (Convolutional Neural Network) |
 | 특징 추출 | MFCC, Mel-Spectrogram |
 
-## 🎯 분류 가능한 소리 (10개 클래스)
+## 분류 가능한 소리 (10개 클래스)
 
 - 에어컨 (air_conditioner)
 - 자동차 경적 (car_horn)
@@ -24,9 +24,9 @@ CNN(Convolutional Neural Network)을 활용한 환경 소리 분류 프로젝트
 - 사이렌 (siren)
 - 거리 음악 (street_music)
 
-## 📂 프로젝트 구조
+## 프로젝트 구조
 
-```
+```text
 cnn-new/
 ├── train.py              # 기본 학습 스크립트
 ├── trainModel.py         # 모델 학습 (상세 버전)
@@ -48,18 +48,19 @@ cnn-new/
 ├── prepare_datasets.py   # 데이터셋 준비
 ├── quick_start.py        # 빠른 시작 가이드
 ├── setup_guide.py        # 설정 가이드
-└── nvi.py                # NVIDIA GPU 설정
+├── nvi.py                # NVIDIA GPU 설정
+└── LICENSE
 ```
 
-## 🛠️ 기술 스택
+## 기술 스택
 
-- **언어**: Python 3.8+
-- **딥러닝**: PyTorch / TensorFlow
-- **오디오 처리**: Librosa, SoundFile
-- **데이터 처리**: NumPy, Pandas
-- **시각화**: Matplotlib
+- Python 3.8+
+- PyTorch / TensorFlow
+- Librosa, SoundFile
+- NumPy, Pandas
+- Matplotlib
 
-## 🚀 실행 방법
+## 실행 방법
 
 ### 1. 환경 설정
 
@@ -85,35 +86,41 @@ python train.py
 python ciass.py --audio your_audio.wav
 ```
 
-## 📊 모델 성능
+## 성능 수치에 대한 주의
 
-| 모델 버전 | 정확도 |
-|----------|--------|
-| cnn_pc.py | ~85% |
-| cnn_pc4.py | ~90% |
-| cnn_pc_up.py | ~92% |
+이 저장소의 과거 학습 스크립트 일부는 UrbanSound8K 메타데이터의 공식 `fold` 구분을 사용하지 않고 `train_test_split`으로 데이터를 다시 나누어 평가했습니다. 따라서 과거 README나 개인 기록에 있던 정확도 수치는 UrbanSound8K 공식 평가 프로토콜과 직접 비교 가능한 대표 성능으로 사용하지 않습니다.
 
-## 🔧 주요 기능
+UrbanSound8K는 원본 녹음에서 잘린 관련 오디오 조각이 서로 다른 분할에 섞여 들어가는 데이터 누수를 피하기 위해 제공된 10개 fold를 그대로 사용하는 평가를 권장합니다.
 
-- **MFCC 특징 추출**: 오디오 신호에서 멜 주파수 켑스트럼 계수 추출
-- **데이터 증강**: 시간 이동, 피치 변환, 노이즈 추가
-- **실시간 분류**: 마이크 입력을 통한 실시간 소리 분류 가능
-- **라즈베리파이 지원**: 경량화 모델로 임베디드 환경 지원
+- Dataset / evaluation guidance: https://urbansounddataset.weebly.com/urbansound8k.html
 
-## 📱 라즈베리파이 배포
+향후 대표 성능은 공식 fold 기준 재평가 결과와 함께 정확도, 클래스별 지표, 모델 크기, Raspberry Pi 추론 지연 등을 별도로 기록할 예정입니다.
+
+## 주요 기능
+
+- MFCC 특징 추출
+- Mel-Spectrogram 기반 입력 실험
+- 데이터 증강 실험
+- 실시간 분류 코드
+- Raspberry Pi용 분류 코드
+
+## Raspberry Pi 배포
 
 ```bash
-# 라즈베리파이에서 실행
 python classiPi.py
 ```
 
-## 📚 참고 자료
+현재 저장소에는 Raspberry Pi용 코드가 있으나, 모델 크기·지연시간·메모리 사용량·전력 소비량에 대한 표준화된 벤치마크는 아직 포함되어 있지 않습니다.
 
-- [UrbanSound8K Dataset](https://urbansounddataset.weebly.com/urbansound8k.html)
-- [Librosa Documentation](https://librosa.org/doc/latest/index.html)
+## 참고 자료
+
+- UrbanSound8K Dataset: https://urbansounddataset.weebly.com/urbansound8k.html
+- Librosa Documentation: https://librosa.org/doc/latest/index.html
+
+## 라이선스
+
+이 저장소에서 AIN108이 작성한 소스 코드는 MIT License로 배포합니다. 자세한 내용은 `LICENSE`를 참고하십시오. 데이터셋과 외부 Python 패키지는 각각의 별도 이용 조건과 라이선스를 따릅니다.
 
 ## 개발자
 
 - GitHub: [@AIN108](https://github.com/AIN108)
-
-
