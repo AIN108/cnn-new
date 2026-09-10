@@ -124,3 +124,7 @@ python classiPi.py
 ## 개발자
 
 - GitHub: [@AIN108](https://github.com/AIN108)
+
+## 포트폴리오
+
+- Notion 프로젝트: https://app.notion.com/p/2c5f6964be618083944be742aa949584
