@@ -107,8 +107,11 @@ UrbanSound8K는 원본 녹음에서 잘린 관련 오디오 조각이 서로 다
 ## Raspberry Pi 배포
 
 ```bash
-python classiPi.py
+pip install tensorflow librosa sounddevice scikit-learn
+CNN_MODEL_PATH=/path/to/my_model.h5 python classiPi.py
 ```
+
+`classiPi.py`는 Keras `.h5` 모델을 사용합니다. 학습된 모델 파일은 저장소에 포함되어 있지 않습니다.
 
 현재 저장소에는 Raspberry Pi용 코드가 있으나, 모델 크기·지연시간·메모리 사용량·전력 소비량에 대한 표준화된 벤치마크는 아직 포함되어 있지 않습니다.
 

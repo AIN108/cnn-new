@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+.idea/
+.vscode/
+# 데이터셋·학습 산출물 (용량이 커서 저장소에 포함하지 않음)
+*.h5
+*.pth
+*.pkl
+*.wav
+datasets/
+.DS_Store
+Thumbs.db

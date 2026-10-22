@@ -295,7 +295,7 @@ class RealtimeClassifier:
         model = VehicleSoundCNN(num_classes=10)
 
         # 체크포인트 로드
-        checkpoint = torch.load(model_path, map_location=self.device)
+        checkpoint = torch.load(model_path, map_location=self.device, weights_only=False)  # config/history 포함 체크포인트라 필요. 직접 학습한 파일만 로드할 것
 
         # state_dict 로드
         if 'model_state_dict' in checkpoint:
