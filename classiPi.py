@@ -15,7 +15,7 @@ from tensorflow.keras.layers import Reshape
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.optimizers import Adam
 import pickle as pkl
-#import sounddevice as sd
+import sounddevice as sd
 import pyaudio
 from sklearn.preprocessing import StandardScaler
 
@@ -32,14 +32,15 @@ def extract_features(file_name):
     stft = np.abs(librosa.stft(X))
     mfccs = np.array(librosa.feature.mfcc(y=X, sr=sample_rate, n_mfcc=128).T)
     chroma = np.array(librosa.feature.chroma_stft(S=stft, sr=sample_rate).T)
-    mel = np.array(librosa.feature.melspectrogram(X, sr=sample_rate).T)
+    mel = np.array(librosa.feature.melspectrogram(y=X, sr=sample_rate).T)
     contrast = np.array(librosa.feature.spectral_contrast(S=stft, sr=sample_rate).T)
     tonnetz = np.array(librosa.feature.tonnetz(y=librosa.effects.harmonic(X), sr=sample_rate).T)
     return mfccs,chroma,mel,contrast,tonnetz
 
 
 # Load the saved model
-model = tf.keras.models.load_model(r'C:\test\cnn_test\my_model.h5')
+# 모델 경로는 CNN_MODEL_PATH 환경변수로 지정 (기본: 현재 폴더의 my_model.h5)
+model = tf.keras.models.load_model(os.getenv('CNN_MODEL_PATH', 'my_model.h5'))
 # Define the labels
 labels = ['air_conditioner', 'car_horn', 'children_playing', 'dog_bark', 'drilling', 'engine_idling', 'gun_shot', 'jackhammer', 'siren', 'street_music']
 

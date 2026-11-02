@@ -1378,7 +1378,7 @@ class AudioClassifier:
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
         # ===== 모델 로드 =====
-        checkpoint = torch.load(model_path, map_location=self.device)
+        checkpoint = torch.load(model_path, map_location=self.device, weights_only=False)  # config/history 포함 체크포인트라 필요. 직접 학습한 파일만 로드할 것
         self.model = SimpleCNN(num_classes=10)
         self.model.load_state_dict(checkpoint['model_state_dict'])
         self.model.to(self.device)

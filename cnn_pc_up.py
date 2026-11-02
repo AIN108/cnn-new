@@ -204,7 +204,7 @@ class RealtimeAudioClassifier:
 
         # 학습된 모델 체크포인트 로드
         # map_location: 모델을 현재 디바이스에 맞게 로드
-        checkpoint = torch.load(model_path, map_location=self.device)
+        checkpoint = torch.load(model_path, map_location=self.device, weights_only=False)  # config/history 포함 체크포인트라 필요. 직접 학습한 파일만 로드할 것
 
         # 모델 인스턴스 생성
         self.model = SimpleCNN(num_classes=10)
